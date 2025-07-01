@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { motion, AnimatePresence } from "framer-motion";
 
 const Navbar = () => {
@@ -15,24 +15,22 @@ const Navbar = () => {
     { name: "Training", path: "/training" },
   ];
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
+  const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
     <nav className="bg-black text-white shadow-lg sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-        {/* Logo */}
         <h1 className="text-2xl text-purple-400 font-bold font-[Orbitron] tracking-widest">
           Cosmic Explorer
         </h1>
 
-        {/* Hamburger Icon */}
-        <button
-          onClick={toggleMenu}
-          className="md:hidden text-white focus:outline-none"
-        >
-          {isOpen ? <X size={28} /> : <Menu size={28} />}
+        {/* Mobile Menu Icon */}
+        <button onClick={toggleMenu} className="md:hidden text-white focus:outline-none">
+          {isOpen ? (
+            <XMarkIcon className="h-7 w-7" />
+          ) : (
+            <Bars3Icon className="h-7 w-7" />
+          )}
         </button>
 
         {/* Desktop Menu */}
@@ -52,7 +50,7 @@ const Navbar = () => {
         </ul>
       </div>
 
-      {/* Animated Mobile Menu */}
+      {/* Mobile Animated Dropdown */}
       <AnimatePresence>
         {isOpen && (
           <motion.ul
